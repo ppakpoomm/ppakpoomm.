@@ -23,10 +23,11 @@ async function loadData() {
 
 function renderAlert(summary) {
   const el = document.getElementById('alertBanner');
+  const expected = summary.expected_awardees ?? 59;
   const pending = summary.pending_awardees;
   el.innerHTML = `
     <strong>⚠️ ต้องติดตามด่วน:</strong>
-    อปท. ได้รับรางวัล 59 แห่ง — ตอบรับแล้ว <strong>${summary.awardees_responded}</strong> แห่ง
+    อปท. ได้รับรางวัล ${expected} แห่ง — ตอบรับแล้ว <strong>${summary.awardees_responded}</strong> แห่ง
     (${summary.response_rate_pct}%) · ยังไม่ตอบรับ <strong>${pending}</strong> แห่ง
   `;
 }
