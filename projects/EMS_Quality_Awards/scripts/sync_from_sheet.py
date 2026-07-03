@@ -55,6 +55,10 @@ def parse_org(value: object) -> tuple[str | None, str | None, str | None]:
 
 
 def classify_status(row: pd.Series) -> str:
+    declined_org = str(row.get(COLS["declined_org"], "") or "").strip()
+    if declined_org:
+        return "declined"
+
     respondent_type = str(row.get(COLS["respondent_type"], "") or "")
     if "ไม่เข้าร่วม" in respondent_type:
         return "declined"
