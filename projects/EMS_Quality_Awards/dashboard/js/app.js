@@ -147,12 +147,12 @@ function renderTable(responses) {
         <tr>
           <td>${r.id}</td>
           <td>${statusBadge(r.status)}</td>
-          <td>${r.province || '—'}</td>
-          <td>${r.org_name || r.declined_org || '—'}</td>
-          <td>${r.unit_type || '—'}</td>
+          <td>${escapeHtml(r.province || '—')}</td>
+          <td>${escapeHtml(r.org_name || r.declined_org || '—')}</td>
+          <td>${escapeHtml(r.unit_type || '—')}</td>
           <td>${participationBadge(r.participation_mode)}</td>
-          <td>${r.coordinator || r.declined_contact || '—'}<br><small>${r.coordinator_phone || ''}</small></td>
-          <td><small>${r.travel_mode || '—'}</small></td>
+          <td>${escapeHtml(r.coordinator || r.declined_contact || '—')}<br><small>${escapeHtml(r.coordinator_phone || '')}</small></td>
+          <td><small>${escapeHtml(r.travel_mode || '—')}</small></td>
           <td>${r.accommodation_request ? '<span class="badge badge-yes">ขอที่พัก</span>' : '—'}</td>
         </tr>
       `).join('');
