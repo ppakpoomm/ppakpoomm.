@@ -56,12 +56,12 @@
       "url": "https://github.com/ppakpoomm/niems-activities",
       "category": "niems",
       "type": "original",
-      "language": null,
-      "status": "planned",
-      "priority": "medium",
-      "description": "NIEMS_ACTION_TODAY — ติดตามกิจกรรมประจำวัน",
-      "updated_at": "2026-01-07",
-      "notes": "รีโปว่าง — พร้อมสำหรับเริ่มโปรเจกต์"
+      "language": "Python",
+      "status": "active",
+      "priority": "high",
+      "description": "ติดตามการคัดเลือก อปท.มาตรฐาน/คุณภาพ — Dashboard + Data Tracker",
+      "updated_at": "2026-07-03",
+      "notes": "44 รายการ อปท.มาตรฐาน 2569, 17 จังหวัดครบถ้วน, 25 จังหวัดต้องติดตาม"
     },
     {
       "name": "ML-For-Beginners",

@@ -65,15 +65,31 @@ npm run dev
 
 ---
 
-#### 1.3 niems-activities 🟡 รอเริ่มโปรเจกต์
+#### 1.3 niems-activities ✅ พัฒนาแล้ว
 
 | รายการ | รายละเอียด |
 |--------|------------|
 | URL | https://github.com/ppakpoomm/niems-activities |
-| สถานะ | Planned — รีโปว่าง |
-| คำอธิบาย | NIEMS_ACTION_TODAY — ติดตามกิจกรรมประจำวัน |
+| ภาษา | Python + HTML/JS Dashboard |
+| สถานะ | Active — สร้างจากข้อมูล Google Drive |
+| คำอธิบาย | ติดตามการคัดเลือก อปท.มาตรฐาน พ.ศ. 2569 และ อปท.คุณภาพ |
 
-**ข้อเสนอ:** ใช้รีโปนี้สำหรับ daily activity tracker, issue board หรือ GitHub Projects สำหรับงานประจำวัน
+**ข้อมูลจาก Google Drive:**
+- 44 รายการส่งฟอร์ม อปท.มาตรฐาน 2569
+- 17 จังหวัดครบถ้วน (หนังสือ + ฟอร์ม)
+- 15 จังหวัดมีหนังสือแต่ไม่กรอกฟอร์ม
+- 10 จังหวัดกรอกฟอร์มแต่ไม่ส่งหนังสือ
+
+**โค้ดชั่วคราวอยู่ที่:** [projects/niems-activities/](../projects/niems-activities/) (รอ push ไปรีโปจริง)
+
+**วิธีรัน:**
+```bash
+cd projects/niems-activities
+make serve
+# เปิด http://localhost:8080/dashboard/
+make summary    # สรุปผล CLI
+make validate   # ตรวจสอบคุณภาพข้อมูล
+```
 
 ---
 

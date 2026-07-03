@@ -45,7 +45,7 @@ graph TB
 |------|--------|------|----------|
 | [**niems-strategic-system**](https://github.com/ppakpoomm/niems-strategic-system) | 🟢 Active | Python | ระบบวางแผนยุทธศาสตร์ — Forensic XLSM Analysis & Blueprint (Phase A ✅) |
 | [**AI-for-Thai-EMS**](https://github.com/ppakpoomm/AI-for-Thai-EMS) | 🟢 Active | TypeScript | แอป AI สำหรับระบบการแพทย์ฉุกเฉินไทย (NIEMS_2569) |
-| [**niems-activities**](https://github.com/ppakpoomm/niems-activities) | 🟡 Planned | — | NIEMS_ACTION_TODAY — ติดตามกิจกรรมประจำวัน (รอเริ่มโปรเจกต์) |
+| [**niems-activities**](https://github.com/ppakpoomm/niems-activities) | 🟢 Active | Python | ติดตามการคัดเลือก อปท.มาตรฐาน/คุณภาพ — [ดูใน projects/](projects/niems-activities/) |
 
 ---
 
@@ -89,6 +89,7 @@ graph TB
 | ดูระบบยุทธศาสตร์ NIEMS | [niems-strategic-system](https://github.com/ppakpoomm/niems-strategic-system) |
 | รันแอป AI สำหรับ EMS | [AI-for-Thai-EMS](https://github.com/ppakpoomm/AI-for-Thai-EMS) → `npm install && npm run dev` |
 | เรียน Machine Learning | [ML-For-Beginners](https://github.com/ppakpoomm/ML-For-Beginners) |
+| ติดตาม อปท. มาตรฐาน 2569 | [projects/niems-activities](projects/niems-activities/) → `make serve` |
 | ดูแผนผังพื้นที่ทำงานทั้งหมด | [docs/WORKSPACE.md](docs/WORKSPACE.md) |
 
 ---
