@@ -1,0 +1,79 @@
+{
+  "phases": [
+    {
+      "id": "rsvp",
+      "name": "ติดตามการตอบรับ",
+      "status": "active",
+      "priority": 1,
+      "actions": [
+        "ติดตาม อปท. ที่ยังไม่ตอบรับ (59 - responded)",
+        "ยืนยันรูปแบบการเข้าร่วม",
+        "บันทึกผู้ไม่เข้าร่วม"
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "การเดินทางและที่พัก",
+      "status": "active",
+      "priority": 2,
+      "actions": [
+        "สรุปรูปแบบการเดินทาง",
+        "ประสาน อบจ.กระบี่ จัดที่พัก",
+        "คำนวณงบประมาณเดินทาง"
+      ]
+    },
+    {
+      "id": "exhibition",
+      "name": "นิทรรศการ",
+      "status": "active",
+      "priority": 3,
+      "actions": [
+        "ยืนยันเจ้าหน้าที่บูธ 2 ท่าน/หน่วย",
+        "ติดตามค่าสนับสนุน 600 บาท/คน/วัน",
+        "ประสานหน่วยออกนิทรรศการเพิ่มเติม"
+      ]
+    },
+    {
+      "id": "ceremony",
+      "name": "พิธีมอบโล่",
+      "status": "upcoming",
+      "priority": 4,
+      "actions": [
+        "ยืนยันผู้รับมอบโล่",
+        "จัดลำดับการมอบรางวัลตามประเภท",
+        "เตรียมเอกสารประกาศ"
+      ]
+    }
+  ],
+  "data_sources": {
+    "primary_spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
+    "drive_folder": "https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_",
+    "form_sheet": "Form Responses 3"
+  },
+  "kpis": [
+    {
+      "name": "อัตราตอบรับ อปท. รางวัล",
+      "current": 27.1,
+      "target": 100,
+      "unit": "%"
+    },
+    {
+      "name": "จำนวนตอบรับเข้าร่วม",
+      "current": 16,
+      "target": 59,
+      "unit": "แห่ง"
+    },
+    {
+      "name": "จำนวนไม่เข้าร่วม",
+      "current": 1,
+      "target": 0,
+      "unit": "แห่ง"
+    },
+    {
+      "name": "ขอที่พักจาก อบจ.กระบี่",
+      "current": 17,
+      "target": null,
+      "unit": "รายการ"
+    }
+  ]
+}

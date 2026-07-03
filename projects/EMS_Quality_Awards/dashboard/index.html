@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMS Quality Awards — อปท.มาตรฐาน 2569</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>🏆 EMS Quality Awards</h1>
+      <p class="subtitle">อปท.มาตรฐาน พ.ศ. 2569 — ประชุมวิชาการ อปท. ระดับชาติ ครั้งที่ 10</p>
+      <p class="event">สถาบันการแพทย์ฉุกเฉินแห่งชาติ (NIEMS)</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="alert-banner" id="alertBanner"></section>
+    <section class="metrics" id="metrics"></section>
+
+    <section class="charts">
+      <div class="chart-card">
+        <h2>สถานะการตอบรับ</h2>
+        <canvas id="statusChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>รูปแบบการเข้าร่วม (ผู้ได้รับรางวัล)</h2>
+        <canvas id="participationChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>รูปแบบการเดินทาง</h2>
+        <canvas id="travelChart"></canvas>
+      </div>
+    </section>
+
+    <section class="tracking-phases" id="trackingPhases"></section>
+
+    <section class="table-section">
+      <h2>รายการตอบรับ (RSVP)</h2>
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="ค้นหาจังหวัด, ชื่อ อปท....">
+        <select id="statusFilter">
+          <option value="">ทุกสถานะ</option>
+          <option value="award_winner">ได้รับรางวัล — เข้าร่วม</option>
+          <option value="declined">ไม่เข้าร่วม</option>
+          <option value="exhibitor">ออกนิทรรศการ (ไม่ได้รางวัล)</option>
+        </select>
+        <select id="participationFilter">
+          <option value="">ทุกรูปแบบ</option>
+          <option value="trophy_and_exhibition">โล่ + นิทรรศการ</option>
+          <option value="trophy_only">โล่เท่านั้น</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table id="rsvpTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>สถานะ</th>
+              <th>จังหวัด</th>
+              <th>ชื่อ อปท.</th>
+              <th>ประเภท</th>
+              <th>รูปแบบ</th>
+              <th>ผู้ประสานงาน</th>
+              <th>เดินทาง</th>
+              <th>ที่พัก</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="table-section pending-section">
+      <h2>⚠️ ต้องติดตาม — อปท. ที่ยังไม่ตอบรับ</h2>
+      <p class="hint">เป้าหมาย 59 แห่ง · ตอบรับแล้ว <span id="respondedCount">—</span> · คงเหลือ <span id="pendingCount">—</span></p>
+      <div class="pending-box" id="pendingBox"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      ข้อมูลจาก
+      <a href="https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit" target="_blank">Google Spreadsheet</a>
+      ·
+      <a href="https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_" target="_blank">Google Drive</a>
+      ·
+      <a href="https://github.com/ppakpoomm/EMS_Quality_Awards">GitHub</a>
+    </p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

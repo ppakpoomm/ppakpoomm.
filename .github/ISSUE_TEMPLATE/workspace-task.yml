@@ -1,0 +1,50 @@
+name: Workspace Task
+description: งานหรือไอเดียสำหรับพื้นที่ทำงานกลาง
+title: "[Task] "
+labels: ["workspace"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ใช้ template นี้สำหรับงานที่เกี่ยวข้องกับพื้นที่ทำงานกลาง (hub) หรืองานข้ามรีโป
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: หมวดหมู่
+      options:
+        - NIEMS Work
+        - Learning
+        - AI Tools
+        - Hub Maintenance
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: related-repo
+    attributes:
+      label: รีโปที่เกี่ยวข้อง (ถ้ามี)
+      placeholder: "เช่น niems-strategic-system"
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: รายละเอียด
+      description: อธิบายงานหรือไอเดียที่ต้องการทำ
+      placeholder: "เช่น อัปเดต repos.json หลังสร้างรีโปใหม่"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: ลำดับความสำคัญ
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true

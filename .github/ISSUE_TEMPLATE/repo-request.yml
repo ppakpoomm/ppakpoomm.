@@ -1,0 +1,54 @@
+name: New Repository Request
+description: ขอเพิ่มรีโปใหม่เข้าพื้นที่ทำงานกลาง
+title: "[Repo] "
+labels: ["workspace", "new-repo"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ใช้ template นี้เมื่อสร้างรีโปใหม่และต้องการเพิ่มเข้า hub
+
+  - type: input
+    id: repo-name
+    attributes:
+      label: ชื่อรีโป
+      placeholder: "เช่น niems-dashboard"
+    validations:
+      required: true
+
+  - type: input
+    id: repo-url
+    attributes:
+      label: URL รีโป
+      placeholder: "https://github.com/ppakpoomm/..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: หมวดหมู่
+      options:
+        - niems
+        - learning
+        - ai-tools
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: คำอธิบาย
+      placeholder: "อธิบายวัตถุประสงค์ของรีโป"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: ประเภท
+      options:
+        - original
+        - fork
+    validations:
+      required: true
