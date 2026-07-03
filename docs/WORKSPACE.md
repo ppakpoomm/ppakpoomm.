@@ -65,30 +65,31 @@ npm run dev
 
 ---
 
-#### 1.3 niems-activities ✅ พัฒนาแล้ว
+#### 1.3 EMS_Quality_Awards ✅ กำลังดำเนินการ
 
 | รายการ | รายละเอียด |
 |--------|------------|
-| URL | https://github.com/ppakpoomm/niems-activities |
+| URL | https://github.com/ppakpoomm/EMS_Quality_Awards |
 | ภาษา | Python + HTML/JS Dashboard |
-| สถานะ | Active — สร้างจากข้อมูล Google Drive |
-| คำอธิบาย | ติดตามการคัดเลือก อปท.มาตรฐาน พ.ศ. 2569 และ อปท.คุณภาพ |
+| สถานะ | Active — ประชุมวิชาการ อปท. ครั้งที่ 10 |
+| คำอธิบาย | ติดตามการตอบรับ อปท.มาตรฐาน พ.ศ. 2569 (59 แห่ง) |
 
-**ข้อมูลจาก Google Drive:**
-- 44 รายการส่งฟอร์ม อปท.มาตรฐาน 2569
-- 17 จังหวัดครบถ้วน (หนังสือ + ฟอร์ม)
-- 15 จังหวัดมีหนังสือแต่ไม่กรอกฟอร์ม
-- 10 จังหวัดกรอกฟอร์มแต่ไม่ส่งหนังสือ
+**แหล่งข้อมูลหลัก:**
+- [Google Spreadsheet](https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit) — ฟอร์มตอบรับ (ชีต `Form Responses 3`)
+- [Google Drive](https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_) — เอกสารงานปัจจุบัน
 
-**โค้ดชั่วคราวอยู่ที่:** [projects/niems-activities/](../projects/niems-activities/) (รอ push ไปรีโปจริง)
+**สถานะล่าสุด:**
+- ตอบรับแล้ว: 16/59 แห่ง (27.1%)
+- ยังไม่ตอบรับ: **43 แห่ง** ⚠️
+- ไม่เข้าร่วม: 1 แห่ง (เทศบาลเมืองศิลา)
 
-**วิธีรัน:**
+**โค้ด:** [projects/EMS_Quality_Awards/](../projects/EMS_Quality_Awards/)
+
 ```bash
-cd projects/niems-activities
-make serve
-# เปิด http://localhost:8080/dashboard/
-make summary    # สรุปผล CLI
-make validate   # ตรวจสอบคุณภาพข้อมูล
+cd projects/EMS_Quality_Awards
+make serve     # Dashboard
+make sync      # อัปเดตจาก Google Sheet
+make summary   # สรุปผล CLI
 ```
 
 ---
@@ -213,7 +214,7 @@ ppakpoomm./
 |-------|------|--------|
 | 1 | niems-strategic-system | งานหลัก NIEMS, Phase B รอดำเนินการ |
 | 2 | AI-for-Thai-EMS | โปรเจกต์ AI สำหรับ EMS ไทย |
-| 3 | niems-activities | ควรเริ่มโปรเจกต์ — รีโปว่าง |
+| 3 | EMS_Quality_Awards | งานปัจจุบัน — ติดตามตอบรับ 43/59 อปท. |
 | 4 | ML-For-Beginners | กำลังเรียนอยู่ |
 | 5 | openclaw | เครื่องมือ AI ส่วนตัว |
 

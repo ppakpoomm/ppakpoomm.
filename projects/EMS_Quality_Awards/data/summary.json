@@ -1,0 +1,29 @@
+{
+  "program": "อปท.มาตรฐาน พ.ศ. 2569",
+  "event": "ประชุมวิชาการการแพทย์ฉุกเฉินในองค์กรปกครองส่วนท้องถิ่นระดับชาติ ครั้งที่ 10",
+  "as_of": "2026-06-26",
+  "total_form_submissions": 37,
+  "expected_awardees": 59,
+  "awardees_responded": 16,
+  "response_rate_pct": 27.1,
+  "by_status": {
+    "award_winner": 32,
+    "declined": 1,
+    "exhibitor": 4
+  },
+  "by_participation": {
+    "trophy_and_exhibition": 17,
+    "trophy_only": 13
+  },
+  "by_unit_type": {
+    "ระดับพื้นฐาน": 17,
+    "ระดับสูง": 1
+  },
+  "by_travel_mode": {
+    "เครื่องบินโดยสาร (ชั้นประหยัด)": 6,
+    "รถยนต์ส่วนบุคคล / รถโดยสารประจำทาง": 11
+  },
+  "provinces_responded": 18,
+  "accommodation_requests": 17,
+  "pending_awardees": 43
+}

@@ -1,0 +1,26 @@
+{
+  "repo": "EMS_Quality_Awards",
+  "organization": {
+    "name": "สถาบันการแพทย์ฉุกเฉินแห่งชาติ",
+    "abbr": "สพฉ.",
+    "abbr_en": "NIEMS"
+  },
+  "active_program": {
+    "id": "apt-standard-2569-conference",
+    "name": "อปท.มาตรฐาน พ.ศ. 2569",
+    "phase": "ประชุมวิชาการระดับชาติ ครั้งที่ 10",
+    "fiscal_year": 2569,
+    "status": "active",
+    "unit_types": [
+      "ระดับพื้นฐาน",
+      "ระดับสูง",
+      "อำนวยการดีเด่น"
+    ]
+  },
+  "data_sources": {
+    "primary_spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
+    "drive_folder": "https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_",
+    "form_sheet": "Form Responses 3"
+  },
+  "last_updated": "2026-07-03"
+}

@@ -52,16 +52,20 @@
       "notes": "Vite + React, ใช้ Gemini API ผ่าน AI Studio"
     },
     {
-      "name": "niems-activities",
-      "url": "https://github.com/ppakpoomm/niems-activities",
+      "name": "EMS_Quality_Awards",
+      "url": "https://github.com/ppakpoomm/EMS_Quality_Awards",
       "category": "niems",
       "type": "original",
       "language": "Python",
       "status": "active",
       "priority": "high",
-      "description": "ติดตามการคัดเลือก อปท.มาตรฐาน/คุณภาพ — Dashboard + Data Tracker",
+      "description": "ติดตาม อปท.มาตรฐาน 2569 — ประชุมวิชาการ อปท. ครั้งที่ 10",
       "updated_at": "2026-07-03",
-      "notes": "44 รายการ อปท.มาตรฐาน 2569, 17 จังหวัดครบถ้วน, 25 จังหวัดต้องติดตาม"
+      "notes": "โฟกัส Spreadsheet ตอบรับ 59 อปท. — ตอบรับ 16/59 (27.1%), 43 แห่งต้องติดตาม",
+      "data_sources": {
+        "spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
+        "drive": "https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_"
+      }
     },
     {
       "name": "ML-For-Beginners",
