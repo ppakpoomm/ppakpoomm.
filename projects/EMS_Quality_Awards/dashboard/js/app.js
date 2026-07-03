@@ -12,6 +12,16 @@ const PARTICIPATION_LABELS = {
   trophy_only: 'โล่เท่านั้น',
 };
 
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[ch]));
+}
+
 async function loadData() {
   const [responses, summary, plan] = await Promise.all([
     fetch(`${DATA_BASE}/rsvp_responses.json`).then(r => r.json()),
