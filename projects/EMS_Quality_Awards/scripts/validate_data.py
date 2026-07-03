@@ -36,8 +36,9 @@ def main() -> int:
                 issues.append({"id": r["id"], "field": "participation", "message": "ไม่ระบุรูปแบบการเข้าร่วม"})
 
     print(f"ตรวจสอบ {len(responses)} รายการ")
-    print(f"อัตราตอบรับ: {summary['response_rate_pct']}% ({summary['awardees_responded']}/59)")
-    print(f"พบปัญหาคุณภาฯข้อมูล: {len(issues)} รายการ")
+    expected = summary.get("expected_awardees", 59)
+    print(f"อัตราตอบรับ: {summary['response_rate_pct']}% ({summary['awardees_responded']}/{expected})")
+    print(f"พบปัญหาคุณภาพข้อมูล: {len(issues)} รายการ")
 
     if issues:
         print("\n--- รายละเอียด ---")
