@@ -10,7 +10,7 @@ validate:
 	python3 scripts/validate_data.py
 
 sync:
-	@echo "Downloading spreadsheet..."
+	@echo "Downloading master spreadsheet..."
 	@command -v gdown >/dev/null || pip install gdown -q
-	gdown "https://drive.google.com/uc?id=1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo" -O /tmp/ems-tracker.xlsx
+	gdown "https://drive.google.com/uc?id=1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u" -O /tmp/ems-tracker.xlsx
 	python3 scripts/sync_from_sheet.py /tmp/ems-tracker.xlsx

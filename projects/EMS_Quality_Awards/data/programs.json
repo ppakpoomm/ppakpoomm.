@@ -18,9 +18,10 @@
     ]
   },
   "data_sources": {
-    "primary_spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
+    "primary_spreadsheet": "https://docs.google.com/spreadsheets/d/1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u/edit",
+    "form_spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
     "drive_folder": "https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_",
-    "form_sheet": "Form Responses 3"
+    "master_sheets": ["สรุปทั้งหมด", "ยังไม่ตอบรับ", "ตอบรับแล้ว", "จากฟอร์มดิบ"]
   },
   "last_updated": "2026-07-03"
 }

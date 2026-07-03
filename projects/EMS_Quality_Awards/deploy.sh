@@ -14,10 +14,9 @@ cd "$TARGET_DIR"
 git remote add origin "$REPO_URL" 2>/dev/null || git remote set-url origin "$REPO_URL"
 
 echo "📋 Copying files..."
-rsync -av --delete \
-  --exclude='.git' \
-  --exclude='deploy.sh' \
-  "$SCRIPT_DIR/" ./
+find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+cp -r "$SCRIPT_DIR"/. .
+rm -f ./deploy.sh
 
 git add -A
 git commit -m "feat: EMS Quality Awards tracker — อปท.มาตรฐาน 2569" || echo "Nothing to commit"

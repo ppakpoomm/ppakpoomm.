@@ -17,19 +17,20 @@
 
 | แหล่ง | ลิงก์ | บทบาท |
 |-------|------|--------|
-| **Spreadsheet ติดตาม** | [Google Sheet](https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit) | ตอบรับเข้าร่วมงาน + นิทรรศการ (ชีต `Form Responses 3`) |
+| **Master Spreadsheet** | [Google Sheet](https://docs.google.com/spreadsheets/d/1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u/edit) | ติดตาม 61 อปท. (สรุปทั้งหมด / ยังไม่ตอบรับ / ตอบรับแล้ว) |
+| **ฟอร์มตอบรับ (ดิบ)** | [Google Sheet](https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit) | คำตอบฟอร์ม Google Form |
 | **Drive งานปัจจุบัน** | [โฟลเดอร์หลัก](https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_) | เอกสารประกาศ หนังสือเชิญ แบบฟอร์ม |
 
-## สถานะล่าสุด (ณ 26 มิ.ย. 2569)
+## สถานะล่าสุด (ณ 3 ก.ค. 2026)
 
 | รายการ | จำนวน |
 |--------|--------|
-| อปท. ได้รับรางวัล (เป้าหมาย) | **59** แห่ง |
-| ตอบรับแล้ว (ไม่ซ้ำ) | **16** แห่ง (27.1%) |
-| ยังไม่ตอบรับ | **43** แห่ง ⚠️ |
+| อปท. ได้รับรางวัล | **61** แห่ง |
+| ตอบรับแล้ว | **13** แห่ง (21.3%) |
+| ยังไม่ตอบรับ | **47** แห่ง ⚠️ |
 | แจ้งไม่เข้าร่วม | 1 แห่ง |
-| หน่วยออกนิทรรศการ (ไม่ได้รับรางวัล) | 4 แห่ง |
-| ขอที่พักจาก อบจ.กระบี่ | 17 รายการ |
+
+ดูแผนเร่งติดตาม: [docs/FOLLOWUP_PLAN.md](docs/FOLLOWUP_PLAN.md)
 
 ## โครงสร้างโปรเจกต์
 
@@ -37,7 +38,9 @@
 EMS_Quality_Awards/
 ├── data/
 │   ├── programs.json           # นิยามโปรแกรม + แหล่งข้อมูล
-│   ├── rsvp_responses.json     # คำตอบฟอร์มตอบรับ (จาก Spreadsheet)
+│   ├── awardees.json           # รายชื่อ 61 อปท. ทั้งหมด
+│   ├── pending_followup.json   # 47 อปท. ยังไม่ตอบรับ
+│   ├── responded.json          # ตอบรับแล้ว
 │   ├── summary.json            # สรุปสถิติ
 │   └── tracking_plan.json      # แผนติดตาม 4 ระยะ
 ├── dashboard/                  # Web Dashboard
@@ -47,7 +50,8 @@ EMS_Quality_Awards/
 │   └── validate_data.py
 └── docs/
     ├── DATA_DICTIONARY.md
-    └── TRACKING_PLAN.md
+    ├── TRACKING_PLAN.md
+    └── FOLLOWUP_PLAN.md        # แผนเร่งติดตาม 47 อปท.
 ```
 
 ## Quick Start

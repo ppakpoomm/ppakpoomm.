@@ -6,9 +6,10 @@
       "status": "active",
       "priority": 1,
       "actions": [
-        "ติดตาม อปท. ที่ยังไม่ตอบรับ (59 - responded)",
-        "ยืนยันรูปแบบการเข้าร่วม",
-        "บันทึกผู้ไม่เข้าร่วม"
+        "ติดตาม 47 อปท. ที่ยังไม่ตอบรับ (จาก 61 แห่ง)",
+        "โทร + อีเมล saraban ภายใน 48 ชม.",
+        "ประสาน สสจ./ท้องถิ่น ผ่านหนังสือเชิญ 01-05",
+        "บันทึกผู้ไม่เข้าร่วม (ปัจจุบัน: 1 แห่ง)"
       ]
     },
     {
@@ -17,9 +18,9 @@
       "status": "active",
       "priority": 2,
       "actions": [
-        "สรุปรูปแบบการเดินทาง",
+        "สรุปรูปแบบการเดินทางจากผู้ตอบรับแล้ว",
         "ประสาน อบจ.กระบี่ จัดที่พัก",
-        "คำนวณงบประมาณเดินทาง"
+        "ติดตามหน่วยที่เดินทางเอง"
       ]
     },
     {
@@ -28,9 +29,9 @@
       "status": "active",
       "priority": 3,
       "actions": [
-        "ยืนยันเจ้าหน้าที่บูธ 2 ท่าน/หน่วย",
+        "ยืนยันเจ้าหน้าที่บูธ 2 ท่าน/หน่วย (โล่+นิทรรศการ)",
         "ติดตามค่าสนับสนุน 600 บาท/คน/วัน",
-        "ประสานหน่วยออกนิทรรศการเพิ่มเติม"
+        "ยืนยันกรณี อบจ.สงขลา (คำขอ 2 บูธ)"
       ]
     },
     {
@@ -39,41 +40,41 @@
       "status": "upcoming",
       "priority": 4,
       "actions": [
-        "ยืนยันผู้รับมอบโล่",
-        "จัดลำดับการมอบรางวัลตามประเภท",
-        "เตรียมเอกสารประกาศ"
+        "ยืนยันผู้รับมอบโล่ทุกหน่วย",
+        "จัดลำดับการมอบตามประเภทรางวัล",
+        "เตรียมเอกสารประกาศผล"
       ]
     }
   ],
   "data_sources": {
-    "primary_spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
-    "drive_folder": "https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_",
-    "form_sheet": "Form Responses 3"
+    "primary_spreadsheet": "https://docs.google.com/spreadsheets/d/1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u/edit",
+    "form_spreadsheet": "https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit",
+    "drive_folder": "https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_"
   },
   "kpis": [
     {
       "name": "อัตราตอบรับ อปท. รางวัล",
-      "current": 27.1,
+      "current": 21.3,
       "target": 100,
       "unit": "%"
     },
     {
-      "name": "จำนวนตอบรับเข้าร่วม",
-      "current": 32,
-      "target": 59,
+      "name": "จำนวนตอบรับแล้ว",
+      "current": 13,
+      "target": 61,
       "unit": "แห่ง"
     },
     {
-      "name": "จำนวนไม่เข้าร่วม",
-      "current": 1,
+      "name": "ยังไม่ตอบรับ",
+      "current": 47,
       "target": 0,
       "unit": "แห่ง"
     },
     {
-      "name": "ขอที่พักจาก อบจ.กระบี่",
-      "current": 17,
+      "name": "ไม่เข้าร่วม",
+      "current": 1,
       "target": null,
-      "unit": "รายการ"
+      "unit": "แห่ง"
     }
   ]
 }

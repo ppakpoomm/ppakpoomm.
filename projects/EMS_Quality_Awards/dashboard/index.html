@@ -30,7 +30,7 @@
         <canvas id="participationChart"></canvas>
       </div>
       <div class="chart-card">
-        <h2>รูปแบบการเดินทาง</h2>
+        <h2>ประเภทรางวัล</h2>
         <canvas id="travelChart"></canvas>
       </div>
     </section>
@@ -38,14 +38,14 @@
     <section class="tracking-phases" id="trackingPhases"></section>
 
     <section class="table-section">
-      <h2>รายการตอบรับ (RSVP)</h2>
+      <h2>รายการ อปท. ทั้งหมด</h2>
       <div class="filters">
         <input type="text" id="searchInput" placeholder="ค้นหาจังหวัด, ชื่อ อปท....">
         <select id="statusFilter">
           <option value="">ทุกสถานะ</option>
-          <option value="award_winner">ได้รับรางวัล — เข้าร่วม</option>
+          <option value="responded">ตอบรับแล้ว</option>
+          <option value="pending">ยังไม่ตอบรับ</option>
           <option value="declined">ไม่เข้าร่วม</option>
-          <option value="exhibitor">ออกนิทรรศการ (ไม่ได้รางวัล)</option>
         </select>
         <select id="participationFilter">
           <option value="">ทุกรูปแบบ</option>
@@ -64,8 +64,8 @@
               <th>ประเภท</th>
               <th>รูปแบบ</th>
               <th>ผู้ประสานงาน</th>
-              <th>เดินทาง</th>
-              <th>ที่พัก</th>
+              <th>เดินทาง/ติดตาม</th>
+              <th>อีเมล</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -75,7 +75,7 @@
 
     <section class="table-section pending-section">
       <h2>⚠️ ต้องติดตาม — อปท. ที่ยังไม่ตอบรับ</h2>
-      <p class="hint">เป้าหมาย 59 แห่ง · ตอบรับแล้ว <span id="respondedCount">—</span> · คงเหลือ <span id="pendingCount">—</span></p>
+      <p class="hint">เป้าหมาย <span id="totalCount">—</span> แห่ง · ตอบรับแล้ว <span id="respondedCount">—</span> · คงเหลือ <span id="pendingCount">—</span></p>
       <div class="pending-box" id="pendingBox"></div>
     </section>
   </main>
@@ -83,7 +83,7 @@
   <footer>
     <p>
       ข้อมูลจาก
-      <a href="https://docs.google.com/spreadsheets/d/1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo/edit" target="_blank">Google Spreadsheet</a>
+      <a href="https://docs.google.com/spreadsheets/d/1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u/edit" target="_blank">Google Spreadsheet (Master)</a>
       ·
       <a href="https://drive.google.com/drive/folders/1XybA5aj7ADdyVz5lLlxhOmVpAmjE-u3_" target="_blank">Google Drive</a>
       ·

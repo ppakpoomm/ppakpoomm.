@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Sync RSVP data from Google Spreadsheet export (xlsx).
+Sync EMS Quality Awards tracker from master Google Spreadsheet (xlsx).
 
 Usage:
   python3 scripts/sync_from_sheet.py /path/to/export.xlsx
 
-Or set SHEET_URL and download via gdown first:
-  gdown "https://drive.google.com/uc?id=1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo" -O /tmp/tracker.xlsx
-  python3 scripts/sync_from_sheet.py /tmp/tracker.xlsx
+Or download first:
+  gdown "https://drive.google.com/uc?id=1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u" -O /tmp/ems-tracker.xlsx
+  python3 scripts/sync_from_sheet.py /tmp/ems-tracker.xlsx
 """
 
 import json
@@ -19,152 +19,139 @@ from pathlib import Path
 import pandas as pd
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-SHEET_NAME = "Form Responses 3"
-SPREADSHEET_ID = "1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo"
+MASTER_SPREADSHEET_ID = "1MqAI8v3dkFFzlTIQnkEDLT_zGQFHrt9u"
+FORM_SPREADSHEET_ID = "1sYsrwor9Eaou48im5Y0wLEtfFhAshy7VAjUUEXAq2wo"
+
+SHEETS = {
+    "all": "สรุปทั้งหมด",
+    "pending": "ยังไม่ตอบรับ",
+    "responded": "ตอบรับแล้ว",
+    "form_raw": "จากฟอร์มดิบ",
+}
 
 COLS = {
-    "timestamp": "Timestamp",
-    "respondent_type": "ประเภทผู้ตอบรับ",
-    "participation_mode": "รูปแบบการเข้าร่วม",
-    "org_select": "ชื่อองค์กรปกครองส่วนท้องถิ่น (เลือกจากรายชื่อ ๕๙ แห่ง)",
-    "unit_type": "ประเภทหน่วยปฏิบัติการที่ได้รับรางวัล",
-    "coordinator": "ชื่อ-สกุล ผู้ประสานงาน",
-    "coordinator_phone": "เบอร์โทรศัพท์มือถือผู้ประสานงาน",
-    "trophy_recipient": "ชื่อ-สกุล ผู้รับมอบโล่รางวัล",
+    "code": "ลำดับ",
+    "org_name": "ชื่ออปท",
     "province": "จังหวัด",
-    "org_name_free": "ชื่อหน่วยงาน",
-    "travel_mode": "รูปแบบการเดินทาง",
-    "travel_detail": "รายละเอียดการเดินทาง / ต้นทาง",
-    "accommodation": "ความต้องการที่พักจาก อบจ.กระบี่",
-    "declined_org": "ชื่อ อปท. ที่แจ้งไม่เข้าร่วม",
-    "declined_reason": "เหตุผลที่ไม่สามารถเข้าร่วมได้ (โดยสังเขป)",
-    "declined_contact": "ชื่อ-สกุล ผู้ประสานงาน และเบอร์โทรศัพท์",
-    "booth_staff_1": "ชื่อ-สกุล เจ้าหน้าที่ประจำบูธนิทรรศการ คนที่ 1",
-    "booth_staff_2": "ชื่อ-สกุล เจ้าหน้าที่ประจำบูธนิทรรศการ คนที่ 2",
+    "award_type": "ประเภทรางวัล",
+    "coordinator": "ผู้ประสานงาน",
+    "phone": "โทร",
+    "email": "อีเมล",
+    "form_status_label": "สถานะฟอร์ม",
+    "participation_route": "เส้นทาง",
+    "trophy_recipient": "ผู้รับโล่",
+    "booth_staff_1": "บูธ1",
+    "booth_staff_2": "บูธ2",
+    "follow_up_by": "ผู้ติดตาม",
+    "notes": "หมายเหตุ",
+    "data_source": "แหล่งข้อมูล",
 }
 
 
-def parse_org(value: object) -> tuple[str | None, str | None, str | None]:
-    if pd.isna(value) or not str(value).strip():
-        return None, None, None
+def cell_str(value: object) -> str | None:
+    if pd.isna(value):
+        return None
     text = str(value).strip()
-    match = re.match(r"(\d+)\s*\|\s*(.+?)\s*\|\s*(.+)", text)
-    if match:
-        return match.group(1), match.group(2).strip(), match.group(3).strip()
-    return None, text, None
+    return text or None
 
 
-def classify_status(row: pd.Series) -> str:
-    respondent_type = str(row.get(COLS["respondent_type"], "") or "")
-    if "ไม่เข้าร่วม" in respondent_type:
+def normalize_code(value: object) -> str | None:
+    text = cell_str(value)
+    if not text:
+        return None
+    digits = re.sub(r"\D", "", text)
+    return digits.zfill(3) if digits else text
+
+
+def classify_form_status(label: str | None) -> str:
+    if not label:
+        return "unknown"
+    if "ยังไม่ตอบรับ" in label:
+        return "pending"
+    if "ไม่เข้าร่วม" in label:
         return "declined"
-    if "ไม่ได้รับรางวัล" in respondent_type or "ออกนิทรรศการ" in respondent_type:
-        return "exhibitor"
-    if "ได้รับรางวัล" in respondent_type:
-        return "award_winner"
+    if "ตอบรับแล้ว" in label:
+        return "responded"
     return "unknown"
 
 
-def classify_participation(row: pd.Series) -> str | None:
-    mode = str(row.get(COLS["participation_mode"], "") or "")
-    if "ไม่จัดนิทรรศการ" in mode or "โล่รางวัลเท่านั้น" in mode:
-        return "trophy_only"
-    if "จัดแสดงนิทรรศการ" in mode or "นิทรรศการ" in mode:
+def classify_participation_mode(route: str | None) -> str | None:
+    if not route:
+        return None
+    upper = route.upper()
+    if "WINNER_FULL" in upper:
         return "trophy_and_exhibition"
+    if "WINNER_AWARD_ONLY" in upper or "AWARD-ONLY" in upper:
+        return "trophy_only"
     return None
 
 
-def simplify_unit_type(unit_type: str | None) -> str | None:
-    if not unit_type:
-        return None
-    if "พื้นฐาน" in unit_type:
-        return "ระดับพื้นฐาน"
-    if "สูง" in unit_type:
-        return "ระดับสูง"
-    if "อำนวยการ" in unit_type:
-        return "อำนวยการดีเด่น"
-    return unit_type
+def row_to_record(row: pd.Series) -> dict:
+    label = cell_str(row.get(COLS["form_status_label"]))
+    route = cell_str(row.get(COLS["participation_route"])) or ""
+
+    return {
+        "code": normalize_code(row.get(COLS["code"])),
+        "org_name": cell_str(row.get(COLS["org_name"])),
+        "province": cell_str(row.get(COLS["province"])),
+        "award_type": cell_str(row.get(COLS["award_type"])),
+        "coordinator": cell_str(row.get(COLS["coordinator"])),
+        "phone": cell_str(row.get(COLS["phone"])),
+        "email": cell_str(row.get(COLS["email"])),
+        "form_status": classify_form_status(label),
+        "form_status_label": label,
+        "participation_route": route,
+        "participation_mode": classify_participation_mode(route),
+        "trophy_recipient": cell_str(row.get(COLS["trophy_recipient"])),
+        "booth_staff_1": cell_str(row.get(COLS["booth_staff_1"])),
+        "booth_staff_2": cell_str(row.get(COLS["booth_staff_2"])),
+        "follow_up_by": cell_str(row.get(COLS["follow_up_by"])),
+        "notes": cell_str(row.get(COLS["notes"])),
+        "data_source": cell_str(row.get(COLS["data_source"])),
+    }
 
 
-def cell_str(row: pd.Series, key: str) -> str | None:
-    value = row.get(COLS[key])
-    if pd.isna(value):
-        return None
-    return str(value).strip()
+def parse_sheet(xlsx_path: Path, sheet_name: str) -> list[dict]:
+    df = pd.read_excel(xlsx_path, sheet_name=sheet_name).dropna(how="all")
+    return [row_to_record(row) for _, row in df.iterrows() if cell_str(row.get(COLS["org_name"]))]
 
 
-def parse_records(df: pd.DataFrame) -> list[dict]:
-    records: list[dict] = []
-    seen: set[tuple] = set()
-
-    for _, row in df.iterrows():
-        if pd.isna(row.get(COLS["timestamp"])):
-            continue
-
-        code, org_name, province = parse_org(row.get(COLS["org_select"]))
-        if not org_name:
-            org_name = cell_str(row, "org_name_free")
-        if not province:
-            province = cell_str(row, "province")
-
-        status = classify_status(row)
-        timestamp = str(row.get(COLS["timestamp"]))
-        dedupe_key = (timestamp, org_name, status)
-        if dedupe_key in seen:
-            continue
-        seen.add(dedupe_key)
-
-        records.append({
-            "id": len(records) + 1,
-            "timestamp": timestamp,
-            "status": status,
-            "participation_mode": classify_participation(row),
-            "org_code": code,
-            "org_name": org_name,
-            "province": province,
-            "unit_type": simplify_unit_type(cell_str(row, "unit_type")),
-            "coordinator": cell_str(row, "coordinator"),
-            "coordinator_phone": cell_str(row, "coordinator_phone"),
-            "trophy_recipient": cell_str(row, "trophy_recipient"),
-            "travel_mode": cell_str(row, "travel_mode"),
-            "travel_detail": cell_str(row, "travel_detail"),
-            "accommodation_request": "อบจ.กระบี่" in str(row.get(COLS["accommodation"], "") or ""),
-            "declined_org": cell_str(row, "declined_org"),
-            "declined_reason": cell_str(row, "declined_reason"),
-            "declined_contact": cell_str(row, "declined_contact"),
-            "booth_staff_1": cell_str(row, "booth_staff_1"),
-            "booth_staff_2": cell_str(row, "booth_staff_2"),
-        })
-
-    return records
-
-
-def build_summary(records: list[dict]) -> dict:
-    award_winners = [r for r in records if r["status"] == "award_winner"]
-    unique_codes = {r["org_code"] for r in award_winners if r["org_code"]}
+def build_summary(awardees: list[dict]) -> dict:
+    pending = [a for a in awardees if a["form_status"] == "pending"]
+    responded = [a for a in awardees if a["form_status"] == "responded"]
+    declined = [a for a in awardees if a["form_status"] == "declined"]
+    total = len(awardees)
+    responded_count = len(responded)
 
     return {
         "program": "อปท.มาตรฐาน พ.ศ. 2569",
         "event": "ประชุมวิชาการการแพทย์ฉุกเฉินในองค์กรปกครองส่วนท้องถิ่นระดับชาติ ครั้งที่ 10",
         "as_of": pd.Timestamp.now().strftime("%Y-%m-%d"),
-        "total_form_submissions": len(records),
-        "expected_awardees": 59,
-        "awardees_responded": len(unique_codes),
-        "response_rate_pct": round(len(unique_codes) / 59 * 100, 1),
-        "by_status": dict(Counter(r["status"] for r in records)),
-        "by_participation": dict(Counter(r["participation_mode"] for r in records if r["participation_mode"])),
-        "by_unit_type": dict(Counter(r["unit_type"] for r in award_winners if r["unit_type"])),
-        "by_travel_mode": dict(Counter(r["travel_mode"] for r in records if r["travel_mode"])),
-        "provinces_responded": len({r["province"] for r in records if r["province"]}),
-        "accommodation_requests": sum(1 for r in records if r["accommodation_request"]),
-        "pending_awardees": 59 - len(unique_codes),
+        "total_awardees": total,
+        "responded_count": responded_count,
+        "pending_count": len(pending),
+        "declined_count": len(declined),
+        "response_rate_pct": round(responded_count / total * 100, 1) if total else 0,
+        "by_award_type": dict(Counter(a["award_type"] for a in awardees if a["award_type"])),
+        "by_province_pending": dict(Counter(a["province"] for a in pending if a["province"])),
+        "by_form_status_label": dict(Counter(a["form_status_label"] for a in awardees if a["form_status_label"])),
+        "by_participation_mode": dict(
+            Counter(a["participation_mode"] for a in awardees if a["participation_mode"])
+        ),
+        "with_email": sum(1 for a in awardees if a.get("email")),
+        "with_phone": sum(1 for a in awardees if a.get("phone")),
+        "spreadsheet_id": MASTER_SPREADSHEET_ID,
     }
+
+
+def write_json(path: Path, data: object) -> None:
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def main() -> int:
     if len(sys.argv) < 2:
         print("Usage: sync_from_sheet.py <path-to-xlsx>")
-        print(f"Spreadsheet: https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit")
+        print(f"Master spreadsheet: https://docs.google.com/spreadsheets/d/{MASTER_SPREADSHEET_ID}/edit")
         return 1
 
     xlsx_path = Path(sys.argv[1])
@@ -172,19 +159,31 @@ def main() -> int:
         print(f"File not found: {xlsx_path}")
         return 1
 
-    df = pd.read_excel(xlsx_path, sheet_name=SHEET_NAME).dropna(how="all")
-    records = parse_records(df)
-    summary = build_summary(records)
+    awardees = parse_sheet(xlsx_path, SHEETS["all"])
+    pending = parse_sheet(xlsx_path, SHEETS["pending"])
+    responded = parse_sheet(xlsx_path, SHEETS["responded"])
+    summary = build_summary(awardees)
 
-    (DATA_DIR / "rsvp_responses.json").write_text(
-        json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (DATA_DIR / "summary.json").write_text(
-        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
+    write_json(DATA_DIR / "awardees.json", awardees)
+    write_json(DATA_DIR / "pending_followup.json", pending)
+    write_json(DATA_DIR / "responded.json", responded)
+    write_json(DATA_DIR / "summary.json", summary)
 
-    print(f"✅ Synced {len(records)} records from {SHEET_NAME}")
-    print(f"   อัตราตอบรับ: {summary['response_rate_pct']}% ({summary['awardees_responded']}/59)")
+    try:
+        form_df = pd.read_excel(xlsx_path, sheet_name=SHEETS["form_raw"]).dropna(how="all")
+        write_json(
+            DATA_DIR / "form_raw.json",
+            json.loads(form_df.to_json(orient="records", force_ascii=False, date_format="iso")),
+        )
+    except ValueError:
+        pass
+
+    print(f"✅ Synced {len(awardees)} awardees from master spreadsheet")
+    print(
+        f"   ตอบรับแล้ว: {summary['responded_count']}/{summary['total_awardees']} "
+        f"({summary['response_rate_pct']}%)"
+    )
+    print(f"   ยังไม่ตอบรับ: {summary['pending_count']} · ไม่เข้าร่วม: {summary['declined_count']}")
     return 0
 
 
