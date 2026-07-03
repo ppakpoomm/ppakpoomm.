@@ -35,7 +35,7 @@
 
 **เนื้อหาสำคัญ:**
 - Forensic analysis ของ XLSM (60 worksheets, 2.1 MB VBA)
-- 8 Strategic Frameworks: SWOT, TOWS, BSC, OKR, Logical Framework
+- 8 Strategic Frameworks (เช่น SWOT, TOWS, BSC, OKR, Logical Framework เป็นต้น)
 - Python scripts: `analyze_xlsm.py`, `extract_vba.py`, `setup_database.py`
 - โฟลเดอร์ `comprehensive_system_blueprint/` และ `xlsm_extracted/`
 
