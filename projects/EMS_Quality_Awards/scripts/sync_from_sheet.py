@@ -185,9 +185,9 @@ def main() -> int:
         json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
+    expected = summary.get("expected_awardees", 59)
     print(f"✅ Synced {len(records)} records from {SHEET_NAME}")
-    print(f"   อัตราตอบรับ: {summary['response_rate_pct']}% ({summary['awardees_responded']}/59)")
-    return 0
+    print(f"   อัตราตอบรับ: {summary['response_rate_pct']}% ({summary['awardees_responded']}/{expected})")
 
 
 if __name__ == "__main__":
