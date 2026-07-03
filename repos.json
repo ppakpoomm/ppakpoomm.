@@ -1,0 +1,139 @@
+{
+  "workspace": {
+    "name": "ppakpoomm Central Workspace",
+    "owner": "ppakpoomm",
+    "hub_repo": "ppakpoomm/ppakpoomm.",
+    "last_surveyed": "2026-07-03",
+    "description": "พื้นที่ทำงานกลางสำหรับโปรเจกต์ NIEMS, การเรียนรู้, และเครื่องมือ AI"
+  },
+  "categories": [
+    {
+      "id": "niems",
+      "name": "NIEMS — งานหลัก",
+      "name_en": "NIEMS Work Projects",
+      "description": "โปรเจกต์ Monitoring & Evaluation และระบบยุทธศาสตร์ สถาบันการแพทย์ฉุกเฉินแห่งชาติ"
+    },
+    {
+      "id": "learning",
+      "name": "การเรียนรู้",
+      "name_en": "Learning & Skills",
+      "description": "หลักสูตร GitHub Skills, Machine Learning และทักษะพื้นฐาน"
+    },
+    {
+      "id": "ai-tools",
+      "name": "เครื่องมือ AI",
+      "name_en": "AI & Developer Tools",
+      "description": "Fork ของโปรเจกต์ AI assistant, Anthropic quickstarts และ reference"
+    }
+  ],
+  "repositories": [
+    {
+      "name": "niems-strategic-system",
+      "url": "https://github.com/ppakpoomm/niems-strategic-system",
+      "category": "niems",
+      "type": "original",
+      "language": "Python",
+      "status": "active",
+      "priority": "high",
+      "description": "ระบบวางแผนยุทธศาสตร์ NIEMS — Forensic XLSM Analysis & System Blueprint",
+      "updated_at": "2026-06-01",
+      "notes": "Phase A เสร็จแล้ว, Phase B กำลังดำเนินการ (4/78 deliverables)"
+    },
+    {
+      "name": "AI-for-Thai-EMS",
+      "url": "https://github.com/ppakpoomm/AI-for-Thai-EMS",
+      "category": "niems",
+      "type": "original",
+      "language": "TypeScript",
+      "status": "active",
+      "priority": "high",
+      "description": "แอป AI สำหรับระบบการแพทย์ฉุกเฉินไทย (NIEMS_2569)",
+      "updated_at": "2026-06-01",
+      "notes": "Vite + React, ใช้ Gemini API ผ่าน AI Studio"
+    },
+    {
+      "name": "niems-activities",
+      "url": "https://github.com/ppakpoomm/niems-activities",
+      "category": "niems",
+      "type": "original",
+      "language": null,
+      "status": "planned",
+      "priority": "medium",
+      "description": "NIEMS_ACTION_TODAY — ติดตามกิจกรรมประจำวัน",
+      "updated_at": "2026-01-07",
+      "notes": "รีโปว่าง — พร้อมสำหรับเริ่มโปรเจกต์"
+    },
+    {
+      "name": "ML-For-Beginners",
+      "url": "https://github.com/ppakpoomm/ML-For-Beginners",
+      "category": "learning",
+      "type": "fork",
+      "language": "Jupyter Notebook",
+      "status": "active",
+      "priority": "medium",
+      "description": "12 สัปดาห์, 26 บทเรียน — Machine Learning สำหรับทุกคน",
+      "updated_at": "2026-07-02",
+      "notes": "Fork จาก microsoft/ML-For-Beginners"
+    },
+    {
+      "name": "introduction-to-github",
+      "url": "https://github.com/ppakpoomm/introduction-to-github",
+      "category": "learning",
+      "type": "fork",
+      "language": null,
+      "status": "completed",
+      "priority": "low",
+      "description": "หลักสูตร GitHub Skills แรก — Introduction to GitHub",
+      "updated_at": "2025-09-08",
+      "notes": "เสร็จแล้ว"
+    },
+    {
+      "name": "skills-communicate-using-markdown",
+      "url": "https://github.com/ppakpoomm/skills-communicate-using-markdown",
+      "category": "learning",
+      "type": "original",
+      "language": null,
+      "status": "in-progress",
+      "priority": "low",
+      "description": "หลักสูตร GitHub Skills — Communicate using Markdown",
+      "updated_at": "2025-12-05",
+      "notes": "มี open issue 1 รายการ"
+    },
+    {
+      "name": "openclaw",
+      "url": "https://github.com/ppakpoomm/openclaw",
+      "category": "ai-tools",
+      "type": "fork",
+      "language": "TypeScript",
+      "status": "active",
+      "priority": "medium",
+      "description": "Personal AI assistant — Any OS, Any Platform",
+      "updated_at": "2026-07-02",
+      "notes": "Fork จาก openclaw/openclaw, sync ล่าสุด"
+    },
+    {
+      "name": "anthropic-quickstarts",
+      "url": "https://github.com/ppakpoomm/anthropic-quickstarts",
+      "category": "ai-tools",
+      "type": "fork",
+      "language": "Python",
+      "status": "reference",
+      "priority": "low",
+      "description": "โปรเจกต์เริ่มต้นสำหรับสร้างแอปด้วย Anthropic API",
+      "updated_at": "2026-05-28",
+      "notes": "Fork จาก anthropics/anthropic-quickstarts"
+    },
+    {
+      "name": "system_prompts_leaks",
+      "url": "https://github.com/ppakpoomm/system_prompts_leaks",
+      "category": "ai-tools",
+      "type": "fork",
+      "language": "JavaScript",
+      "status": "reference",
+      "priority": "low",
+      "description": "คอลเลกชัน System Prompts จาก ChatGPT, Claude, Gemini",
+      "updated_at": "2026-07-03",
+      "notes": "อ้างอิงสำหรับศึกษา prompt engineering"
+    }
+  ]
+}
