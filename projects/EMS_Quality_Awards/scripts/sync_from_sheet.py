@@ -140,24 +140,26 @@ def parse_records(df: pd.DataFrame) -> list[dict]:
 
 
 def build_summary(records: list[dict]) -> dict:
+    expected_awardees = 59
     award_winners = [r for r in records if r["status"] == "award_winner"]
     unique_codes = {r["org_code"] for r in award_winners if r["org_code"]}
+    responded = len(unique_codes)
 
     return {
         "program": "อปท.มาตรฐาน พ.ศ. 2569",
         "event": "ประชุมวิชาการการแพทย์ฉุกเฉินในองค์กรปกครองส่วนท้องถิ่นระดับชาติ ครั้งที่ 10",
         "as_of": pd.Timestamp.now().strftime("%Y-%m-%d"),
         "total_form_submissions": len(records),
-        "expected_awardees": 59,
-        "awardees_responded": len(unique_codes),
-        "response_rate_pct": round(len(unique_codes) / 59 * 100, 1),
+        "expected_awardees": expected_awardees,
+        "awardees_responded": responded,
+        "response_rate_pct": round(responded / expected_awardees * 100, 1),
         "by_status": dict(Counter(r["status"] for r in records)),
         "by_participation": dict(Counter(r["participation_mode"] for r in records if r["participation_mode"])),
         "by_unit_type": dict(Counter(r["unit_type"] for r in award_winners if r["unit_type"])),
         "by_travel_mode": dict(Counter(r["travel_mode"] for r in records if r["travel_mode"])),
         "provinces_responded": len({r["province"] for r in records if r["province"]}),
         "accommodation_requests": sum(1 for r in records if r["accommodation_request"]),
-        "pending_awardees": 59 - len(unique_codes),
+        "pending_awardees": expected_awardees - responded,
     }
 
 
