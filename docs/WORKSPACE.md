@@ -57,7 +57,7 @@
 git clone https://github.com/ppakpoomm/AI-for-Thai-EMS.git
 cd AI-for-Thai-EMS
 npm install
-# ตั้งค่า GEMINI_API_KEY ใน .env.local
+# ตั้งค่า VITE_GEMINI_API_KEY ใน .env.local
 npm run dev
 ```
 
