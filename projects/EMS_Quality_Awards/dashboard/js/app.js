@@ -98,7 +98,13 @@ function renderPhases(plan) {
 }
 
 function statusBadge(status) {
-  const cls = status === 'award_winner' ? 'badge-winner' : status === 'declined' ? 'badge-declined' : 'badge-exhibitor';
+  const classMap = {
+    award_winner: 'badge-winner',
+    declined: 'badge-declined',
+    exhibitor: 'badge-exhibitor',
+    unknown: 'badge-unknown',
+  };
+  const cls = classMap[status] || 'badge-unknown';
   return `<span class="badge ${cls}">${STATUS_LABELS[status] || status}</span>`;
 }
 
