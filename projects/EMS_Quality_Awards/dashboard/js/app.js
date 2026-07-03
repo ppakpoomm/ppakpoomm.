@@ -120,8 +120,9 @@ function statusBadge(status) {
 
 function participationBadge(mode) {
   if (!mode) return '—';
-  const cls = mode === 'trophy_and_exhibition' ? 'badge-exhibit' : 'badge-trophy';
-  return `<span class="badge ${cls}">${PARTICIPATION_LABELS[mode] || mode}</span>`;
+  const cls = mode === 'trophy_and_exhibition' ? 'badge-exhibit' : mode === 'trophy_only' ? 'badge-trophy' : 'badge-trophy';
+  const label = PARTICIPATION_LABELS[mode] ?? '—';
+  return `<span class="badge ${cls}">${escapeHtml(label)}</span>`;
 }
 
 function renderTable(responses) {
