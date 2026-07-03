@@ -12,7 +12,7 @@
 
 รีโปนี้ทำหน้าที่ 3 อย่าง:
 
-1. **GitHub Profile README** — แสดงบนหน้าโปรไฟล์ [github.com/ppakpoomm](https://github.com/ppakpoomm)
+1. **Central Hub README** — หน้าเอกสารศูนย์กลางสำหรับเชื่อมโยงโปรเจกต์ทั้งหมด (ไม่ใช่ GitHub Profile README โดยตรง)
 2. **Central Hub** — จุดเชื่อมโยงไปยังรีโปทั้งหมด 10 รายการ
 3. **Workspace Catalog** — เก็บ `repos.json` สำหรับ agent/tool อ่านได้
 
