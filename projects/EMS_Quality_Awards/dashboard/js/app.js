@@ -34,8 +34,9 @@ function renderAlert(summary) {
 
 function renderMetrics(summary) {
   const el = document.getElementById('metrics');
+  const expected = summary.expected_awardees ?? 59;
   el.innerHTML = `
-    <div class="metric-card gold"><div class="metric-value">59</div><div class="metric-label">อปท. ได้รับรางวัล</div></div>
+    <div class="metric-card gold"><div class="metric-value">${expected}</div><div class="metric-label">อปท. ได้รับรางวัล</div></div>
     <div class="metric-card success"><div class="metric-value">${summary.awardees_responded}</div><div class="metric-label">ตอบรับแล้ว</div></div>
     <div class="metric-card danger"><div class="metric-value">${summary.pending_awardees}</div><div class="metric-label">ยังไม่ตอบรับ</div></div>
     <div class="metric-card warning"><div class="metric-value">${summary.by_status.declined || 0}</div><div class="metric-label">ไม่เข้าร่วม</div></div>
