@@ -157,7 +157,7 @@ function renderPending(summary, responses) {
 
   const box = document.getElementById('pendingBox');
   box.innerHTML = `
-    <p><strong>อัตราตอบรับ:</strong> ${summary.response_rate_pct}% (${summary.awardees_responded}/59)</p>
+    <p><strong>อัตราตอบรับ:</strong> ${summary.response_rate_pct}% (${summary.awardees_responded}/${summary.expected_awardees ?? 59})</p>
     <p><strong>รหัส อปท. ที่ตอบรับแล้ว:</strong> ${[...respondedCodes].sort((a,b) => +a - +b).join(', ') || '—'}</p>
     <p><strong>แนวทางติดตาม:</strong></p>
     <ol>
