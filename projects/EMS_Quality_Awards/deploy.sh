@@ -8,8 +8,7 @@ TARGET_DIR="${1:-/tmp/EMS_Quality_Awards-deploy}"
 
 echo "📦 Cloning EMS_Quality_Awards..."
 rm -rf "$TARGET_DIR"
-git clone "$REPO_URL" "$TARGET_DIR" 2>/dev/null || git init "$TARGET_DIR"
-
+git clone "$REPO_URL" "$TARGET_DIR" || { echo "Clone failed; initializing new repo in $TARGET_DIR"; git init "$TARGET_DIR"; }
 cd "$TARGET_DIR"
 git remote add origin "$REPO_URL" 2>/dev/null || git remote set-url origin "$REPO_URL"
 
