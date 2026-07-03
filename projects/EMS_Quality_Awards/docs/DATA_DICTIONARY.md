@@ -43,6 +43,6 @@
 
 ```bash
 make sync      # ดาวน์โหลด + แปลงจาก Google Sheet
-make validate  # ตรวจสอบคุณภาฯข้อมูล
+make validate  # ตรวจสอบคุณภาพข้อมูล
 make summary   # แสดงสรุป CLI
 ```
